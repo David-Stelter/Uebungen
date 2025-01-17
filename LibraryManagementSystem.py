@@ -1,14 +1,14 @@
 import time
 books = {
-    "1984" : 1,
-    "Animal Farm" : 3,
-    "Mein Kampf" : 0
+    "book1" : 1,
+    "book2" : 3,
+    "book3" : 0
 }
 # Numbers indicate available copies
 books_rented = {
-    "1984" : 2,
-    "Animal Farm" : 0,
-    "Mein Kampf" : 3
+    "book1" : 2,
+    "book2" : 0,
+    "book3" : 3
 }
 def view_available_books():
     for key, element in books.items():
