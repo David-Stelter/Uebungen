@@ -12,5 +12,5 @@ for i in range(limit):
     if i == limit - 1:
         print(fibo1)
     else:
-        print(fibo1, end=", ")
+        print(fibo1, end="\n")
     fibo1, fibo2 = fibo2, fibo1 + fibo2
