@@ -14,4 +14,3 @@ for i in range(limit):
     else:
         print(fibo1, end=", ")
     fibo1, fibo2 = fibo2, fibo1 + fibo2
-
