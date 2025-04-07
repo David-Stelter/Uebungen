@@ -1,4 +1,3 @@
-import random
 integers = []
 
 while True:
@@ -15,7 +14,8 @@ summands = []
 for i in range(len(integers)):
     for j in range(i + 1, len(integers)):
         if integers[i] + integers[j] == sum:
-            summands.append((integers[i], integers[j]))
+            summands.append((integers[i], integers[j])) # Speichert Summanden in einer Liste wie folgt: summands = ((1, 5),
+                                                        #                                                           (2, 4))
 
 for summanden in summands:
     print(f"{sum} = {summanden[0]} + {summanden[1]}")
