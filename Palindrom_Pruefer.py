@@ -4,7 +4,7 @@ def check_palindrom(wort):
     return wort.lower() == wort[::-1].lower()
 
 while True:
-    aktion = input("Willst du überprüfen, ob ein Wort oder Phrase ein Palindrom ist (p), oder das Programm verlassen (l)?: ")
+    aktion = input("Willst du überprüfen, ob ein Wort oder Phrase ein Palindrom ist (p), oder das Programm verlassen (q)?: ")
     if aktion.lower() == "p":
         phrase = input("Bitte gib das Wort oder die Phrase ein, die überprüft werden soll: ")
         if check_palindrom(phrase):
@@ -13,8 +13,8 @@ while True:
         else:
             print(phrase, "ist kein Palindrom.")
             time.sleep(1)
-    elif aktion.lower() == "l":
+    elif aktion.lower() == "q":
         break
     else:
-        print("Bitte gib p oder l ein.")
+        print("Bitte gib p oder q ein.")
         time.sleep(2)

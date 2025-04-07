@@ -1,8 +1,8 @@
 import random
 import time
-worte = ("Apfel", "Mensch", "Banane", "Schule", "Spaß", "Haus", "Computer", "Programmieren", "Python", "Buch", "Tisch", "Stuhl", "Lampe", "Fenster", "Tür", "Auto", "Straße", "Himmel", "Wolke", "Sonne", "Mond", "Sterne", "Wasser", "Feuer", "Erde", "Luft", "Pflanze", "Tier", "Mensch", "Kopf", "Auge", "Nase", "Mund", "Ohr", "Hand", "Fuß", "Bein", "Arm", "Bauch", "Rücken", "Herz", "Leber", "Niere", "Lunge", "Magen", "Darm", "Blut", "Knochen", "Muskel", "Haut", "Haar", "Zahn", "Zunge", "Finger", "Zeh", "Nagel", "Knie", "Ellbogen", "Schulter", "Hals", "Brust", "Rücken", "Po", "Schwanz", "Flügel", "Schnabel", "Feder", "Kralle", "Zaun", "Tor", "Wiese", "Feld", "Berg", "Tal", "Fluss", "See", "Meer", "Ozean", "Insel", "Kontinent", "Land", "Staat", "Stadt", "Dorf", "Hauptstadt", "Grenze", "Krieg", "Frieden", "Freiheit", "Gleichheit", "Brüderlichkeit", "Demokratie", "Diktatur", "Monarchie", "Republik", "Sozialismus", "Kapitalismus", "Kommunismus", "Faschismus", "Nationalsozialismus", "Kolonialismus", "Imperialismus", "Globalisierung", "Klimawandel", "Umweltschutz", "Nachhaltigkeit", "Energie", "Strom", "Wärme", "Kälte", "Licht", "Schatten", "Farbe", "Ton", "Musik", "Kunst", "Malerei", "Bildhauerei", "Architektur", "Literatur", "Dichtung", "Prosa", "Lyrik", "Roman", "Gedicht", "Schrift", "Buchstabe", "Wort", "Satz", "Text", "Sprache", "Grammatik", "Rechtschreibung", "Zeichensetzung", "Übersetzung", "Dolmetschen", "Vokabel", "Wörterbuch", "Lexikon", "Enzyklopädie", "Bibliothek", "Buchhandlung", "Verlag", "Autor", "Schriftsteller", "Dichter", "Leser", "Bibliothekar", "Buchhändler", "Verleger", "Drucker", "Buchdrucker", "Buchbinder", "Buchillustrator", "Buchkritiker", "Buchmesse", "Buchpreis")
+worte = ("Apfel", "Mensch", "Banane", "Schule", "Spass", "Haus", "Computer", "Programmieren", "Python", "Buch", "Tisch", "Stuhl", "Lampe", "Fenster", "Tuer", "Auto", "Strasse", "Himmel", "Wolke", "Sonne", "Mond", "Sterne", "Wasser", "Feuer", "Erde", "Luft", "Pflanze", "Tier", "Mensch", "Kopf", "Auge", "Nase", "Mund", "Ohr", "Hand", "Fuss", "Bein", "Arm", "Bauch", "Ruecken", "Herz", "Leber", "Niere", "Lunge", "Magen", "Darm", "Blut", "Knochen", "Muskel", "Haut", "Haar", "Zahn", "Zunge", "Finger", "Zeh", "Nagel", "Knie", "Ellbogen", "Schulter", "Hals", "Brust", "Ruecken", "Po", "Schwanz", "Fluegel", "Schnabel", "Feder", "Kralle", "Zaun", "Tor", "Wiese", "Feld", "Berg", "Tal", "Fluss", "See", "Meer", "Ozean", "Insel", "Kontinent", "Land", "Staat", "Stadt", "Dorf", "Hauptstadt", "Grenze", "Krieg", "Frieden", "Freiheit", "Gleichheit", "Bruederlichkeit", "Demokratie", "Diktatur", "Monarchie", "Republik", "Sozialismus", "Kapitalismus", "Kommunismus", "Faschismus", "Nationalsozialismus", "Kolonialismus", "Imperialismus", "Globalisierung", "Klimawandel", "Umweltschutz", "Nachhaltigkeit", "Energie", "Strom", "Waerme", "Kaelte", "Licht", "Schatten", "Farbe", "Ton", "Musik", "Kunst", "Malerei", "Bildhauerei", "Architektur", "Literatur", "Dichtung", "Prosa", "Lyrik", "Roman", "Gedicht", "Schrift", "Buchstabe", "Wort", "Satz", "Text", "Sprache", "Grammatik", "Rechtschreibung", "Zeichensetzung", "uebersetzung", "Dolmetschen", "Vokabel", "Woerterbuch", "Lexikon", "Enzyklopaedie", "Bibliothek", "Buchhandlung", "Verlag", "Autor", "Schriftsteller", "Dichter", "Leser", "Bibliothekar", "Buchhaendler", "Verleger", "Drucker", "Buchdrucker", "Buchbinder", "Buchillustrator", "Buchkritiker", "Buchmesse", "Buchpreis")
 
-def wort_wählen():
+def wort_waehlen():
     return random.choice(worte)
 
 def eingabe(prompt, eingegebene_buchstaben):
@@ -19,14 +19,14 @@ def eingabe(prompt, eingegebene_buchstaben):
         return eingabe(prompt, eingegebene_buchstaben)
 
 def spiel():
-    wort = wort_wählen()
+    wort = wort_waehlen()
     buchstaben_klein = list(wort.lower())
     buchstaben_normal = list(wort)
     buchstaben_verdeckt = ["_" for _ in buchstaben_normal]
     eingegebene_buchstaben = []
     fehler = 0
     max_fehler = 6
-
+    print("In diesem Spiel gibt es kein ß, ä, ö oder ü. Diese wurden durch ss, ae, oe und ue ersetzt.")
     while fehler < max_fehler and "_" in buchstaben_verdeckt:
         print("".join(buchstaben_verdeckt))
         buchstabe, eingegebene_buchstaben = eingabe("\nGeben Sie einen Buchstaben ein: ", eingegebene_buchstaben)
@@ -36,11 +36,11 @@ def spiel():
                     buchstaben_verdeckt[i] = buchstaben_normal[i]
         else:
             fehler += 1
-            print(f"Falsch geraten! Noch {max_fehler - fehler} Versuche übrig.")
+            print(f"Falsch geraten! Noch {max_fehler - fehler} Versuche uebrig.")
             time.sleep(1)
     
     if "_" not in buchstaben_verdeckt:
-        print(f"Herzlichen Glückwunsch! Sie haben das Wort {wort} erraten.")
+        print(f"Herzlichen Glueckwunsch! Sie haben das Wort {wort} erraten.")
     else:
         print(f"Leider verloren! Das Wort war:", wort)
 
