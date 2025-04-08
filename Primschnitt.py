@@ -1,56 +1,45 @@
-import time
-
-def get_valid_integer(prompt):
+def get_valid_integer(prompt): # Stellt sicher, dass upper bound und lower bound Integer sind.
     while True:
         try:
             return int(input(prompt))
         except ValueError:
-            print("Please enter a valid number")
+            print("Bitte gib eine ganze Zahl ein.")
 
 def sieve_of_eratosthenes(lower_bound, upper_bound):
-    is_prime = [True] * (upper_bound + 1)
-    is_prime[0] = is_prime[1] = False
-    primes = []
-    last_reported_percent = -1  # Start with an impossible percentage to ensure first report
-    report_frequency = 0.1  # Report at least every 0.1 seconds for smoother feedback
-    last_report_time = time.time()
+    is_prime = [True] * (upper_bound + 1) # Liste mit n Elemente, alle vorerst wahr (Primzahl)
+    is_prime[0] = is_prime[1] = False # 0 und 1 sind keine Primzahlen, werden also auf False geändert
+    primes = [] # Initialisiere Liste mit Primzahlen, noch leer
 
-    for i in range(2, upper_bound + 1):
+    for i in range(2, upper_bound + 1): # for-Schleife die von 2 (der ersten Primzahl) bis inklusive upper_bound läuft
         if is_prime[i]:
             if i >= lower_bound:
-                primes.append(i)
-            # Mark multiples of i as not prime
-            for j in range(i * i, upper_bound + 1, i):
-                is_prime[j] = False
-            
-            # Report progress
-            current_percent = round(percent_done_function(lower_bound, upper_bound, i), 1)
-            current_time = time.time()
-            
-            if current_percent > last_reported_percent or current_time - last_report_time > report_frequency:
-                print(f"\r{current_percent}% done", end="", flush=True)  # Use \r for updating on the same line
-                last_reported_percent = current_percent
-                last_report_time = current_time
+                primes.append(i) # Wenn is_prime[i] = True, und größer oder gleich dem lower bound ist, wird i der Liste an Primzahlen hinzugefügt
 
-    print()  # Print a newline after the loop to move to the next line
+            for j in range(i * i, upper_bound + 1, i):
+                is_prime[j] = False # Alle vielfachen von i werden auf False gesetzt, da sie mindestens durch drei Zahlen teilbar sind, 1, i und x * i, wobei x eine natürliche Zahl ist
+            # Man beginnt bei i * i weil alle anderen schon False sind, da sie ein Ergebnis von k * i sind, wobei k < i. Da man von unten nach oben vorgeht, hat man alle vielfachen von k schon False markiert.
+            
     return primes
 
-def percent_done_function(lower_bound, upper_bound, current_num):
-    total = upper_bound - lower_bound
-    done = current_num - lower_bound
-    if total == 0:  # Avoid division by zero if lower_bound == upper_bound
-        return 100
-    return min(100, (done / total) * 100)
+while True: # Stellt sicher, dass lower_bound < upper_bound
+    lower_bound = get_valid_integer("Gib die untere Grenze ein: ")
+    upper_bound = get_valid_integer("Gib die obere Grenze ein: ")
 
-# Main execution
-lower_bound = get_valid_integer("Enter the lower bound: ")
-upper_bound = get_valid_integer("Enter the upper bound: ")
+    if lower_bound >= upper_bound:
+        print("Bitte stelle sicher, dass die untere Grenze kleiner ist als die obere Grenze.")
+    else:
+        break
 
 primes = sieve_of_eratosthenes(lower_bound, upper_bound)
 
 if primes:
-    prime_average = sum(primes) / len(primes)
-    formattierter_durchschnitt = f"{prime_average:,.2f}".replace(',', 'X').replace('.', ',').replace('X', '.')
-    print(formattierter_durchschnitt)
+    print(f"Die Primzahlen von {lower_bound} bis {upper_bound} sind folgende:") # Gibt alle Primzahlen aus
+    for i in range(len(primes)):
+        print(f"- {primes[i]}")
+
+    prime_average = sum(primes) / len(primes) # Ermittelt den Durchschnitt der Primzahlen
+    formattierter_durchschnitt = f"{prime_average:,.2f}".replace(',', 'X').replace('.', ',').replace('X', '.') # Formattiert die Primzahlen in das Format 1.000,00
+    
+    print(f"Der Durchschnitt aller Primzahlen von {lower_bound} bis {upper_bound} ist {formattierter_durchschnitt}")
 else:
-    print("No primes found in the range.")
+    print(f"Zwischen {lower_bound} und {upper_bound} gibt es keine Primzahlen.")

@@ -1,5 +1,4 @@
-fibo1 = 0
-fibo2 = 1
+fibo1, fibo2 = 0, 1
 
 while True:
     try:
